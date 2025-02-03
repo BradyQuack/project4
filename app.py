@@ -10,10 +10,9 @@ project_data = pd.read_csv("vehicles_us.csv")
 project_data['date_posted'] = pd.to_datetime(project_data['date_posted'])
 
 # Fill missing values
-project_data['is_4wd'] = project_data['is_4wd'].fillna(0).astype('Int64')
-project_data['model_year'] = project_data['model_year'].fillna(0).astype('Int64')
-project_data['cylinders'] = project_data['cylinders'].fillna(0).astype('Int64')
-project_data['odometer'] = project_data['odometer'].fillna(0)
+project_data['model_year'] = project_data['model_year'].fillna(project_data['model_year'].median())
+project_data['cylinders'] = project_data.groupby('model')['cylinders'].fillna(project_data['cylinders'].median())
+project_data['odometer'] = project_data.groupby('model')['odometer'].fillna(project_data['odometer'].median())
 project_data['paint_color'].fillna('unknown', inplace=True)
 project_data.info()
 
