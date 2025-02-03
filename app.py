@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 
 # Read the CSV file into a DataFrame
-project_data = pd.read_csv("C:/Users/brady/OneDrive/Desktop/PythonEnv/project4/vehicles_us.csv")
+project_data = pd.read_csv("vehicles_us.csv")
 
 st.header('Vehicle Price and Model Year Analysis')
 price_histogram = px.histogram(project_data, x='price', nbins=50, title='Distribution of Vehicle Prices')
